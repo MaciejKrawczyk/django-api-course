@@ -8,6 +8,15 @@ from django.forms.models import model_to_dict
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 
+import yfinance as yf
+
+
+@api_view(["GET"])
+def test(request, *args, **kwargs):
+    msft = yf.Ticker("EURUSD=X")
+    print(msft.history_metadata)
+    return JsonResponse({"message": 'xxx'})
+
 
 # Create your views here.
 
@@ -22,7 +31,6 @@ def api_home(request, *args, **kwargs):
         # instance = serializer.save()
         # print(serializer.data)
         return Response(serializer.data)
-
 
     # instance = Product.objects.order_by("?").first()
     # data = {}
